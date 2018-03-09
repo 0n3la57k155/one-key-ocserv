@@ -14,7 +14,7 @@ export CF_Email="yourmail@mail.com"
 
 curl https://get.acme.sh | sh
 
-acme.sh --issue --dns dns_cf -d yourdomain.xyz -d yoursubdomain.yourdomain.xyz --keylength ec-384
+~/.acme/acme.sh --issue --dns dns_cf -d yourdomain.xyz -d yoursubdomain.yourdomain.xyz --keylength ec-384
 
 cp youdomain.key /etc/ocserv/ssl/server-key.pem
 cp fullchain.cer /etc/ocserv/ssl/server-cert.pem
