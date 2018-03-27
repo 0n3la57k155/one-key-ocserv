@@ -68,7 +68,7 @@ Download_ocserv(){
 	rm -rf ocserv/
 	
 	mkdir "${conf_file}"
-	wget  -N -P "${conf_file}" "https://ojtqui99j.qnssl.com/ocserv.conf.txt"
+	wget  -N -P "${conf_file}" "https://ojtqui99j.qnssl.com/ocserv.conf"
 	[[ ! -s "${conf}" ]] && echo -e "${Error} ocserv 配置文件下載失敗 !" && rm -rf "${conf_file}" && exit 1
 }
 Service_ocserv(){
