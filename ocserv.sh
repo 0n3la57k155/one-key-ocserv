@@ -58,7 +58,7 @@ Get_ip(){
 }
 Download_ocserv(){
 	mkdir "ocserv" && cd "ocserv"
-	wget "ftp://ftp.infradead.org/pub/ocserv/ocserv-${ocserv_ver}.tar.xz"
+	wget "https://ojtqui99j.qnssl.com/ocserv-${ocserv_ver}.tar.xz"
 	[[ ! -s "ocserv-${ocserv_ver}.tar.xz" ]] && echo -e "${Error} ocserv 源碼文件下載失敗 !" && rm -rf "ocserv-${ocserv_ver}.tar.xz" && exit 1
 	tar -xJf ocserv-${ocserv_ver}.tar.xz && cd ocserv-${ocserv_ver}
 	./configure
@@ -68,11 +68,11 @@ Download_ocserv(){
 	rm -rf ocserv/
 	
 	mkdir "${conf_file}"
-	wget  -N -P "${conf_file}" "https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/other/ocserv.conf"
+	wget  -N -P "${conf_file}" "https://ojtqui99j.qnssl.com/ocserv.conf.txt"
 	[[ ! -s "${conf}" ]] && echo -e "${Error} ocserv 配置文件下載失敗 !" && rm -rf "${conf_file}" && exit 1
 }
 Service_ocserv(){
-	if ! wget  https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/other/ocserv_debian -O /etc/init.d/ocserv; then
+	if ! wget  https://ojtqui99j.qnssl.com/ocserv_debian -O /etc/init.d/ocserv; then
 		echo -e "${Error} ocserv 服務 管理腳本下載失敗 !" && over
 	fi
 	chmod +x /etc/init.d/ocserv
@@ -133,7 +133,7 @@ Installation_dependency(){
 		echo -e "${Error} 本腳本不支持 CentOS 系統 !" && exit 1
 	elif [[ ${release} = "debian" ]]; then
 		mv /etc/apt/sources.list /etc/apt/sources.list.bak
-		wget -O "/etc/apt/sources.list" "https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/sources/us.sources.list"
+		wget -O "/etc/apt/sources.list" "https://ojtqui99j.qnssl.com/us.sources.list"
 		apt-get update
 		apt-get install vim pkg-config build-essential libgnutls28-dev libwrap0-dev liblz4-dev libseccomp-dev libreadline-dev libnl-nf-3-dev libev-dev gnutls-bin -y
 		rm -rf /etc/apt/sources.list
@@ -479,14 +479,14 @@ Set_iptables(){
 }
 Update_Shell(){
 	echo -e "當前版本為 [ ${sh_ver} ]，開始檢測最新版本..."
-	sh_new_ver=$(wget  -qO- "https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ocserv.sh"|grep 'sh_ver="'|awk -F "=" '{print $NF}'|sed 's/\"//g'|head -1)
+	sh_new_ver=$(wget  -qO- "https://raw.githubusercontent.com/ky0ncheng/one-key-ocserv/master/ocserv.sh"|grep 'sh_ver="'|awk -F "=" '{print $NF}'|sed 's/\"//g'|head -1)
 	[[ -z ${sh_new_ver} ]] && echo -e "${Error} 檢測最新版本失敗 !" && exit 1
 	if [[ ${sh_new_ver} != ${sh_ver} ]]; then
 		echo -e "發現新版本[ ${sh_new_ver} ]，是否更新？[Y/n]"
 		stty erase '^H' && read -p "(默認: y):" yn
 		[[ -z "${yn}" ]] && yn="y"
 		if [[ ${yn} == [Yy] ]]; then
-			wget -N  https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ocserv.sh && chmod +x ocserv.sh
+			wget -N  https://raw.githubusercontent.com/ky0ncheng/one-key-ocserv/master/ocserv.sh && chmod +x ocserv.sh
 			echo -e "腳本已更新為最新版本[ ${sh_new_ver} ] !"
 		else
 			echo && echo "	已取消..." && echo
