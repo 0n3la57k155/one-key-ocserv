@@ -3,7 +3,7 @@ This script from https://doub.io/vpnzy-7/
 Installation:
 
 ```
-wget https://github.com/ky0ncheng/one-key-ocserv/raw/master/install.sh && chmod +x install.sh && ./install.sh
+wget https://github.com/ky0ncheng/one-key-ocserv/raw/master/ocserv.sh && chmod +x install.sh && ./install.sh
 ```
 
 SSL certificate by letsencrypt with [acme.sh](https://acme.sh)
