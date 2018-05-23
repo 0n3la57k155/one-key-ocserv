@@ -22,5 +22,5 @@ cp fullchain.cer /etc/ocserv/ssl/server-cert.pem
 
 Restart ocserv and enjoy~
 
-More function you can `./install.sh` to use.
+More function you can `./ocserv.sh` to use.
 
